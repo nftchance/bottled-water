@@ -11,14 +11,16 @@ bottled-water
 └─ main — "Entry point for running the analysis"
 ```
 
-The general interaction patterns is as follows:
+The developer experience pattern is as follows:
 
 ```ml
 bottled-water
 ├─ install - "pip install -r requirements.txt"
 ├─ configuration - "Create a .env file with the following contents: ANTHROPIC_API_KEY="
-├─ call - "Submit a GET request to the endpoint: http://localhost:8080/?id={ID}&analyze=true"
-└─ run - "python main.py"
+├─ run - "python main.py"
+├─ development - "Development API using Flask: python api.py"
+├─ production - "Production API using Gunicorn: gunicorn --config config.py api:api"
+└─ call - "Submit a GET request to the endpoint: http://localhost:8080/?id={ID}&analyze=true"
 ```
 
 An example execution of the scripts will result in:

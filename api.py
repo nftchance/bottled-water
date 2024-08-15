@@ -3,18 +3,16 @@ from flask import Flask, request, jsonify
 from config import CONFIG
 from scraper import Scraper 
 
-app = Flask(__name__)
+api = Flask(__name__)
 scraper = Scraper()
 
-@app.route('/')
+@api.route('/')
 def analyze_tweet():
     tweet_id = request.args.get('id')
     analyze = request.args.get('analyze', default=False, type=bool)
 
     if not tweet_id:
         return jsonify({"error": "No tweet ID provided"}), 400
-
-    print(tweet_id)
     
     try:
         result = scraper.call(tweet_id)
@@ -25,4 +23,4 @@ def analyze_tweet():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=CONFIG['PORT'])
+    api.run(debug=CONFIG['DEBUG'], port=CONFIG['PORT'])
