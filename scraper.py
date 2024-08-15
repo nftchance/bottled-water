@@ -144,6 +144,23 @@ class Scraper:
                 result = data['data']['user']['result']
                 self._write_cache(scrape_url, result)
                 return result
+            
+    def call(self, url: str) -> dict:
+        """
+        Determine if the URL is a tweet or profile and call the appropriate function
+        """
+        scrape_url = self.get_url(url)
+        
+        if self._cache_exists(scrape_url):
+            print(f"Using cached data for {scrape_url}")
+            return self._read_cache(scrape_url)
+        
+        if scrape_url.startswith('https://x.com/i/web/status/'):
+            return self.tweet(scrape_url)
+        elif scrape_url.startswith('https://x.com/'):
+            return self.profile(scrape_url)
+        else:
+            raise ValueError(f"Invalid URL: {scrape_url}")
 
 
     def _extract(self, data: dict) -> dict:
