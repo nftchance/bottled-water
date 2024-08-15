@@ -6,6 +6,7 @@ load_dotenv()
 
 CONFIG = {
   'ANTHROPIC_API_KEY': os.getenv("ANTHROPIC_API_KEY"),
+  'PORT': int(os.getenv("PORT", 8080)),
   'BLOCK_RESOURCE_TYPES': [
     'beacon',
     'csp_report',

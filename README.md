@@ -7,6 +7,7 @@ bottled-water
 ├─ scraper — "Playwright-based Twitter scraper"
 ├─ cache — "Local caching system for scraped data and analysis results"
 ├─ config — "Configuration for resource blocking and other settings"
+├─ api — "HTTP based entry point for running the analysis"
 └─ main — "Entry point for running the analysis"
 ```
 
@@ -16,6 +17,7 @@ The general interaction patterns is as follows:
 bottled-water
 ├─ install - "pip install -r requirements.txt"
 ├─ configuration - "Create a .env file with the following contents: ANTHROPIC_API_KEY="
+├─ call - "Submit a GET request to the endpoint: http://localhost:8080/?id={ID}&analyze=true"
 └─ run - "python main.py"
 ```
 
